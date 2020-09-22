@@ -18,9 +18,10 @@ describe("Given all of the known accounts to interact with Uniswap", () => {
                 });
             });
 
+            // Each line of output is an account that isn't contained in the
+            // list of valid accounts.
             const invalidAccounts = scriptOutput.trim().split("\n");
-
-            // If there is no output, then every line matched valid accounts.
+            
             expect(invalidAccounts).toEqual([]);
         });
     });
