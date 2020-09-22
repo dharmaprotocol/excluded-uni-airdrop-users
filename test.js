@@ -1,18 +1,27 @@
-const { users: initialUNIAllocation } = require("./initial-UNI-allocation/users.json")
-const { users: maxValidUserSet  } = require("./all-addresses-in-uniswap-transactions/users.json");
+// Libraries
+const fs = require('fs');
+const { exec } = require("child_process");
+const zlib = require('zlib');
 
-const { users: dharma } = require("./dharma/users.json");
+describe("Projects", () => {
+    let validAccounts;
 
-const totalUserSet = dharma;
+    beforeAll(async () => {
+        const gzippedAccountsFile = "./data/all-addresses-in-uniswap-transactions/candidate_UNI_proxy_airdrop_accounts.txt.gz";
+        const accountsFile = "./data/temp/valid-accounts.txt";
 
-it("should not have overlap with the initial UNI allocation", () => {
-    const intersection = totalUserSet.filter(x => initialUNIAllocation.includes(x));
+        const fileContents = fs.createReadStream(gzippedAccountsFile);
+        const writeStream = fs.createWriteStream(accountsFile);
+        const unzip = zlib.createGunzip();
 
-    expect(intersection.length).toBe(0);
-});
+        fileContents.pipe(unzip).pipe(writeStream);
+    });
 
-it("should only have addresses that interacted with Uniswap contracts at any given time", () => {
-    const difference = totalUserSet.filter(x => !maxValidUserSet.includes(x));
+    describe("Dharma", () => {
+        let accounts;
 
-    expect(difference.length).toBe(0);
+        it("every submitted address is in the list of valid addresses", async () => {
+            // TODO Compare each line in project with valid-accounts.txt.
+        });
+    });
 });
