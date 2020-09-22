@@ -20,15 +20,15 @@ This repo is meant to serve as a hub for projects to submit their sets of affect
 {
     "users": [
         "<ethAddress1>",
-        ...
+        "...",
         "<ethAddressN>"
     ]
 }
 ```
 4. `README.md` should contain basic instructions on how to pull the set of addresses submitted.  If a script is required, it should be included in the directory in some capacity.
-5. Update `sanitycheck.js` to pull from your user list in validating the above invariants.
+5. Update `test.js` to pull from your user list in validating the above invariants.
 
-# How To Sanity Check 
+# How To Sanity Check
 ```bash
 > yarn
 > yarn test
