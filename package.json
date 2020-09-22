@@ -1,0 +1,12 @@
+{
+  "name": "excluded-uni-airdrop-users",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^26.4.2"
+  },
+  "scripts": {
+      "test": "jest" 
+  }
+}
