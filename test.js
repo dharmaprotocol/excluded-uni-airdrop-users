@@ -8,8 +8,6 @@ const zlib = require('zlib');
 jest.setTimeout(1000000);
 
 describe("Given all of the known accounts to interact with Uniswap", () => {
-    let validAccounts;
-
     beforeAll(async () => {
         const gzippedAccountsFile = "./data/all-addresses-in-uniswap-transactions/candidate_UNI_proxy_airdrop_accounts.txt.gz";
         const accountsFile = "./data/temp/valid-accounts.txt";
