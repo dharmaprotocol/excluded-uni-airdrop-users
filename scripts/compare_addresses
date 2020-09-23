@@ -1,0 +1,10 @@
+#!/bin/bash
+mkdir data/temp
+touch data/temp/valid-accounts.txt
+gunzip -c ./data/source/valid-accounts.txt.gz > data/temp/valid-accounts.txt
+
+# Concatenate all project accounts, making them unique and lowercase, into one file.
+cat projects/**/*.txt | tr A-Z a-z | sort -u > ./data/temp/project-accounts.txt
+# Compare each line in that file to the list of known accounts to interact with Uniswap.
+# This will output any that are not in the list of known accounts.
+comm -13 <(sort -u ./data/temp/valid-accounts.txt) <(sort -u ./data/temp/project-accounts.txt )
