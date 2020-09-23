@@ -1,5 +1,5 @@
 // Libraries
-const { exec } = require("child_process");
+const {exec} = require("child_process");
 
 // There is one single test here that takes a lot of time,
 // so we must set a high timeout threshold.
@@ -20,8 +20,11 @@ describe("Given all of the known accounts to interact with Uniswap", () => {
 
             // Each line of output is an account that isn't contained in the
             // list of valid accounts.
-            const invalidAccounts = scriptOutput.trim().split("\n");
-            
+            const invalidAccounts = scriptOutput
+                .trim()
+                .split("\n")
+                .filter(Boolean);
+
             expect(invalidAccounts).toEqual([]);
         });
     });
