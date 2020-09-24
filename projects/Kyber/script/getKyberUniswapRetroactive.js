@@ -73,9 +73,10 @@ async function getFinalOutput() {
   bridgeAddresses = bridgeAddresses.map(address => address.toLowerCase());
 
   const kyberCombined = duneAddresses.concat(bridgeAddresses).unique();
-  const saveFile = 'accounts.json';
+  const saveFile = 'accounts.txt';
 
   let output = filterUsers(kyberCombined, ineligibleUsers);
+  output = output.join('\n');
 
   fs.writeFileSync(saveFile, JSON.stringify(output), function(err) {
     if (err) {
@@ -86,7 +87,7 @@ async function getFinalOutput() {
 
 function filterUsers(kyberCombined, ineligibleUsers) {
   let result = [];
-  for (let address in kyberCombined) {
+  for (let address of kyberCombined) {
     address = web3.toChecksumAddress(address);
     if (ineligibleUsers[address] == undefined) {
       result.push(address);
